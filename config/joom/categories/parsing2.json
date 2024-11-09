@@ -1,0 +1,100 @@
+[
+    {
+        "name": "categoriesList",
+        "action": "initVar",
+        "result": "=",
+        "comment": "Иницилизируем массив результат конвертации данных с html",
+        "initVar": {
+            "const": [],
+            "convert": null
+        }
+    },
+    {
+        "name": "fileHtmlCategories",
+        "result": "=",
+        "comment": "Чтения файла: с категориями html",
+        "action": "fileRead",
+        "path": {
+            "const": "D:/configMedia/media/joom/html/categories.html",
+            "convert": {
+                "type": "string"
+            }
+        }
+    },
+    {
+        "name": "htmlDomCategories",
+        "action": "convertInDom",
+        "result": "=",
+        "comment": "Создание dom element из строки файла категории",
+        "convertInDom": {
+            "html": {
+                "store": "fileHtmlCategories",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "categoriesDomList",
+        "action": "findElementHtmlAll",
+        "result": "=",
+        "comment": "Поиск всех категории из dom element-ов",
+        "findElementHtmlAll": {
+            "html": {
+                "store": "htmlDomCategories",
+                "convert": null
+            },
+            "selector": {
+                "const": ".childWrapper___ANtaK",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "forElementCategories",
+        "comment": "Прогнать в цикле файлы указанные в for.array",
+        "action": "for",
+        "result": "=",
+        "for": {
+            "item": "domElementCategories",
+            "array": {
+                "store": "categoriesDomList",
+                "convert": null
+            },
+            "config": [
+                {
+                    "name": "categoriesObject",
+                    "result": "=",
+                    "comment": "Создать пустой объект в который будет записывать результат сохранения конвертации",
+                    "action": "initVar",
+                    "initVar": {
+                        "const": {},
+                        "convert": null
+                    }
+                },
+                {
+                    "name": [
+                        "categoriesObject",
+                        "image"
+                    ],
+                    "result": "=",
+                    "comment": "Получить путь к файлу из html",
+                    "action": "getAtrHtml",
+                    "getAtrHtml": {
+                        "html": {
+                            "store": "domElementCategories",
+                            "convert": null
+                        },
+                        "nameArt": {
+                            "const": "src",
+                            "convert": null
+                        },
+                        "selector": {
+                            "const": ".image___ZMfjN",
+                            "convert": null
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

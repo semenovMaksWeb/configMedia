@@ -1,0 +1,73 @@
+[
+    {
+        "name": "pageCategories",
+        "result": "=",
+        "comment": "Открытия браузера на главной странице",
+        "action": "webOpen",
+        "webOpen": {
+            "url": {
+                "const": "https://www.joom.ru/ru",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "clickElementModal",
+        "result": "=",
+        "comment": "Закрытие всплывающего меню",
+        "action": "webElementClick",
+        "webElementClick": {
+            "page": {
+                "store": "pageCategories"
+            },
+            "selector": {
+                "const": ".close___zqEXd",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "clickElementMenu",
+        "result": "=",
+        "comment": "Открытия меню с категориями",
+        "action": "webElementClick",
+        "webElementClick": {
+            "page": {
+                "store": "pageCategories"
+            },
+            "selector": {
+                "const": ".allCategoriesButton___HtVxU",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "htmlWebCagegories",
+        "result": "=",
+        "comment": "Получения html категории",
+        "action": "webGetInnerHTML",
+        "webGetInnerHTML": {
+            "page": {
+                "store": "pageCategories"
+            },
+            "selector": {
+                "const": ".children___BVmNf",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "writeFileCategoriesHTMl",
+        "result": "=",
+        "comment": "Записать html в файл",
+        "action": "fileWrite",
+        "fileWrite": {
+            "path": {
+                "const": "D:/configMedia/media/joom/html/categories.html"
+            },
+            "data": {
+                "store": "htmlWebCagegories"
+            }
+        }
+    }
+]

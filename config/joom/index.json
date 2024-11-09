@@ -1,0 +1,16 @@
+[
+    {
+        "name": "validateBody",
+        "action": "fileConfig",
+        "path": "/joom/validateBody.json",
+        "result": "=",
+        "comment": "Валидация входных параметров"
+    },
+    {
+        "name": "categories",
+        "action": "fileConfig",
+        "path": "/joom/categories/index.json",
+        "result": "=",
+        "comment": "Обработка категории"
+    }
+]

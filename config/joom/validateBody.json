@@ -1,0 +1,53 @@
+[
+    {
+        "validateBody": [
+            {
+                "name": "categories",
+                "type": "object",
+                "children": [
+                    {
+                        "name": "webHtml",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "isDowload",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "parsing",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "db",
+                        "type": "boolean",
+                        "default": false
+                    }
+                ]
+            },
+            {
+                "name": "product",
+                "type": "object",
+                "children": [
+                    {
+                        "name": "isDowload",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "parsing",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "db",
+                        "type": "boolean",
+                        "default": false
+                    }
+                ]
+            }
+        ]
+    }
+]
