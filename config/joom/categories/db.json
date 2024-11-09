@@ -5,7 +5,7 @@
         "comment": "Чтения файла: Ответ с категориями",
         "action": "fileRead",
         "path": {
-            "const": "./media/joom/dataset_out/categories.json",
+            "const": "D:/configMedia/media/joom/json/categories.json",
             "convert": null
         }
     },
