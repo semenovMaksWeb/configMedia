@@ -4,6 +4,7 @@
             {
                 "store": [
                     "body",
+                    "categories",
                     "isDowload"
                 ]
             },
@@ -19,11 +20,11 @@
         "comment": "скачать и сохранить файл продукта на диск",
         "downloadFileHttp": {
             "path": {
-                "const": "./media/joom/dataset_out/img/categories/"
+                "const": "D:/configMedia/media/joom/img/categories/"
             },
             "url": {
                 "store": [
-                    "categoriesItem",
+                    "categoriesObject",
                     "image"
                 ]
             },

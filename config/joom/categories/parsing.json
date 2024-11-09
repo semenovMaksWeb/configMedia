@@ -1,76 +1,118 @@
 [
     {
-        "name": "fileApi",
+        "name": "categoriesList",
+        "action": "initVar",
         "result": "=",
-        "comment": "Чтения файла: Ответ с категориями",
+        "comment": "Иницилизируем массив результат конвертации данных с html",
+        "initVar": {
+            "const": [],
+            "convert": null
+        }
+    },
+    {
+        "name": "fileHtmlCategories",
+        "result": "=",
+        "comment": "Чтения файла: с категориями html",
         "action": "fileRead",
         "path": {
-            "const": "./media/joom/dataset_in/categoriesApiResult.json",
+            "const": "D:/configMedia/media/joom/html/categories.html",
             "convert": {
                 "type": "string"
             }
         }
     },
     {
-        "name": "jsonParsing",
-        "comment": "Преобразование json для дальнейшего записание в БД",
-        "action": "mappingJson",
+        "name": "htmlDomCategories",
+        "action": "convertInDom",
         "result": "=",
-        "mappingJson": {
-            "schema": [
-                {
-                    "key": "categories",
-                    "type": "array",
-                    "init": true,
-                    "root": [
-                        "payload",
-                        "children"
-                    ],
-                    "children": [
-                        {
-                            "key": "name",
-                            "type": "item",
-                            "init": false,
-                            "path": [
-                                "name"
-                            ]
-                        },
-                        {
-                            "key": "image",
-                            "type": "item",
-                            "init": false,
-                            "path": [
-                                "mainImage",
-                                "images",
-                                "0",
-                                "url"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "json": {
-                "store": "fileApi",
-                "convert": {
-                    "type": "json"
-                }
+        "comment": "Создание dom element из строки файла категории",
+        "convertInDom": {
+            "html": {
+                "store": "fileHtmlCategories",
+                "convert": null
             }
         }
     },
     {
-        "name": "forJsonArray",
+        "name": "categoriesDomList",
+        "action": "findElementHtmlAll",
+        "result": "=",
+        "comment": "Поиск всех категории из dom element-ов",
+        "findElementHtmlAll": {
+            "html": {
+                "store": "htmlDomCategories",
+                "convert": null
+            },
+            "selector": {
+                "const": ".childWrapper___ANtaK",
+                "convert": null
+            }
+        }
+    },
+    {
+        "name": "forElementCategories",
+        "comment": "Прогнать в цикле файлы указанные в for.array",
         "action": "for",
         "result": "=",
         "for": {
-            "item": "categoriesItem",
+            "item": "domElementCategories",
             "array": {
-                "store": [
-                    "jsonParsing",
-                    "categories"
-                ],
+                "store": "categoriesDomList",
                 "convert": null
             },
             "config": [
+                {
+                    "name": "categoriesObject",
+                    "result": "=",
+                    "comment": "Создать пустой объект в который будет записывать результат сохранения конвертации",
+                    "action": "initVar",
+                    "initVar": {
+                        "const": {},
+                        "convert": null
+                    }
+                },
+                {
+                    "name": [
+                        "categoriesObject",
+                        "name"
+                    ],
+                    "result": "=",
+                    "comment": "Получить имя категории",
+                    "action": "getTextContent",
+                    "getTextContent": {
+                        "html": {
+                            "store": "domElementCategories",
+                            "convert": null
+                        },
+                        "selector": {
+                            "const": null,
+                            "convert": null
+                        }
+                    }
+                },
+                {
+                    "name": [
+                        "categoriesObject",
+                        "image"
+                    ],
+                    "result": "=",
+                    "comment": "Получить путь к файлу из html",
+                    "action": "getAtrHtml",
+                    "getAtrHtml": {
+                        "html": {
+                            "store": "domElementCategories",
+                            "convert": null
+                        },
+                        "nameArt": {
+                            "const": "src",
+                            "convert": null
+                        },
+                        "selector": {
+                            "const": ".image___ZMfjN",
+                            "convert": null
+                        }
+                    }
+                },
                 {
                     "name": "fileName",
                     "comment": "Получить имя файла",
@@ -79,7 +121,7 @@
                     "convertReplaceAll": {
                         "string": {
                             "store": [
-                                "categoriesItem",
+                                "categoriesObject",
                                 "image"
                             ]
                         },
@@ -105,7 +147,7 @@
                 },
                 {
                     "name": [
-                        "categoriesItem",
+                        "categoriesObject",
                         "image"
                     ],
                     "action": "initVar",
@@ -114,6 +156,17 @@
                     "initVar": {
                         "store": "fileName",
                         "convert": null
+                    }
+                },
+                {
+                    "name": "categoriesList",
+                    "copyResult": true,
+                    "action": "initVar",
+                    "comment": "Сохранения объекта в массив результата",
+                    "result": "push",
+                    "initVar": {
+                        "store": "categoriesObject",
+                        "convert": "object"
                     }
                 }
             ]
@@ -125,16 +178,13 @@
         "action": "fileWrite",
         "fileWrite": {
             "path": {
-                "const": "./media/joom/dataset_out/categories.json",
+                "const": "D:/configMedia/media/joom/json/categories.json",
                 "convert": {
                     "type": "string"
                 }
             },
             "data": {
-                "store": [
-                    "jsonParsing",
-                    "categories"
-                ],
+                "store": "categoriesList",
                 "convert": {
                     "type": "string"
                 }
