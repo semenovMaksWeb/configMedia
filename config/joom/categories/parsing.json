@@ -147,7 +147,9 @@
                 {
                     "name": "fuction",
                     "action": "fileConfig",
-                    "path": "/joom/categories/dowloadFile.json",
+                    "params": {
+                        "path": "/joom/categories/dowloadFile.json"
+                    },
                     "result": "=",
                     "comment": "Скачивание файла"
                 },
@@ -159,9 +161,62 @@
                     "action": "initVar",
                     "result": "=",
                     "comment": "Сохранить путь к файлу",
-                    "initVar": {
-                        "store": "fileName",
-                        "convert": null
+                    "params": {
+                        "initVar": {
+                            "store": "fileName",
+                            "convert": null
+                        }
+                    }
+                },
+                {
+                    "name": [
+                        "categoriesObject",
+                        "url"
+                    ],
+                    "result": "=",
+                    "comment": "url товаров категории",
+                    "action": "getAtrHtml",
+                    "params": {
+                        "html": {
+                            "store": "domElementCategories",
+                            "convert": null
+                        },
+                        "nameArt": {
+                            "const": "href",
+                            "convert": null
+                        },
+                        "selector": {
+                            "const": ".child____HCcU",
+                            "convert": null
+                        }
+                    }
+                },
+                {
+                    "name": [
+                        "categoriesObject",
+                        "url"
+                    ],
+                    "action": "convertReplaceAll",
+                    "result": "=",
+                    "comment": "Добавление пути к url",
+                    "params": {
+                        "string": {
+                            "store": [
+                                "categoriesObject",
+                                "url"
+                            ]
+                        },
+                        "searchString": {
+                            "const": "/ru/",
+                            "convert": {
+                                "type": "RegExp",
+                                "regExpFlag": "gi"
+                            }
+                        },
+                        "replaceString": {
+                            "const": "https://www.joom.ru/",
+                            "convert": null
+                        }
                     }
                 },
                 {
