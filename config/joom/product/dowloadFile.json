@@ -17,7 +17,7 @@
             }
         ],
         "comment": "скачать и сохранить файл продукта на диск",
-        "downloadFileHttp": {
+        "params": {
             "path": {
                 "const": "./media/joom/dataset_out/img/product"
             },

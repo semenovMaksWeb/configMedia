@@ -18,7 +18,9 @@
             }
         ],
         "action": "fileConfig",
-        "path": "/joom/categories/web.json",
+        "params": {
+            "path": "/joom/categories/web.json"
+        },
         "result": "=",
         "comment": "Парсинг с браузера"
     },
@@ -41,7 +43,9 @@
             }
         ],
         "action": "fileConfig",
-        "path": "/joom/categories/parsing.json",
+        "params": {
+            "path": "/joom/categories/parsing.json"
+        },
         "result": "=",
         "comment": "Парсинг html в json"
     },
@@ -64,7 +68,9 @@
                 "const": true
             }
         ],
-        "path": "/joom/categories/db.json",
+        "params": {
+            "path": "/joom/categories/db.json"
+        },
         "result": "=",
         "comment": "Сохранение в бд"
     }

@@ -17,7 +17,9 @@
                 "const": true
             }
         ],
-        "path": "/joom/product/parsing.json",
+        "params": {
+            "path": "/joom/product/parsing.json",
+        },
         "result": "=",
         "comment": "Парсинг продуктов с html файлов, и скачивания картинок при наличии ключа isDowload"
     },
@@ -39,7 +41,9 @@
                 "const": true
             }
         ],
-        "path": "/joom/product/db.json",
+        "params": {
+            "path": "/joom/product/db.json",
+        },
         "result": "=",
         "comment": "Сохранение в бд продуктов"
     }

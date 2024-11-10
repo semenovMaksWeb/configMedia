@@ -18,7 +18,7 @@
         "name": "dowloadFile",
         "action": "downloadFileHttp",
         "comment": "скачать и сохранить файл продукта на диск",
-        "downloadFileHttp": {
+        "params": {
             "path": {
                 "const": "D:/configMedia/media/joom/img/categories/"
             },

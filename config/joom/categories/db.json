@@ -4,9 +4,11 @@
         "result": "=",
         "comment": "Чтения файла: Ответ с категориями",
         "action": "fileRead",
-        "path": {
-            "const": "D:/configMedia/media/joom/json/categories.json",
-            "convert": null
+        "params": {
+            "path": {
+                "const": "D:/configMedia/media/joom/json/categories.json",
+                "convert": null
+            }
         }
     },
     {
@@ -14,10 +16,12 @@
         "action": "initVar",
         "result": "=",
         "comment": "Сохранить путь к файлу",
-        "initVar": {
-            "store": "fileCategories",
-            "convert": {
-                "type": "json"
+        "params": {
+            "initVar": {
+                "store": "fileCategories",
+                "convert": {
+                    "type": "json"
+                }
             }
         }
     },
@@ -26,7 +30,7 @@
         "result": "=",
         "comment": "Массив названии",
         "action": "convertListInKeyArray",
-        "convertListInKeyArray": {
+        "params": {
             "key": {
                 "const": "name"
             },
@@ -40,7 +44,7 @@
         "result": "=",
         "comment": "Массив названии",
         "action": "convertListInKeyArray",
-        "convertListInKeyArray": {
+        "params": {
             "key": {
                 "const": "image"
             },
@@ -52,7 +56,9 @@
     {
         "name": "fuctionConnectionDB",
         "action": "fileConfig",
-        "path": "/connection/postgressql.json",
+        "params": {
+            "path": "/connection/postgressql.json"
+        },
         "result": "=",
         "comment": "Подключение к бд"
     },
@@ -61,7 +67,7 @@
         "action": "sql",
         "result": "=",
         "comment": "Вызов sql функции",
-        "sql": {
+        "params": {
             "type": {
                 "env": "BD_MAIN_TYPE",
                 "convert": {

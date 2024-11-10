@@ -4,7 +4,7 @@
         "result": "=",
         "comment": "Открытия браузера на главной странице",
         "action": "webOpen",
-        "webOpen": {
+        "params": {
             "url": {
                 "const": "https://www.joom.ru/ru",
                 "convert": null
@@ -16,7 +16,7 @@
         "result": "=",
         "comment": "Закрытие всплывающего меню",
         "action": "webElementClick",
-        "webElementClick": {
+        "params": {
             "page": {
                 "store": "pageCategories"
             },
@@ -31,7 +31,7 @@
         "result": "=",
         "comment": "Открытия меню с категориями",
         "action": "webElementClick",
-        "webElementClick": {
+        "params": {
             "page": {
                 "store": "pageCategories"
             },
@@ -46,7 +46,7 @@
         "result": "=",
         "comment": "Получения html категории",
         "action": "webGetInnerHTML",
-        "webGetInnerHTML": {
+        "params": {
             "page": {
                 "store": "pageCategories"
             },
@@ -61,7 +61,7 @@
         "result": "=",
         "comment": "Записать html в файл",
         "action": "fileWrite",
-        "fileWrite": {
+        "params": {
             "path": {
                 "const": "D:/configMedia/media/joom/html/categories.html"
             },

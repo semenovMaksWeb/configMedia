@@ -4,9 +4,11 @@
         "action": "initVar",
         "result": "=",
         "comment": "Иницилизируем массив результат конвертации данных с html",
-        "initVar": {
-            "const": [],
-            "convert": null
+        "params": {
+            "initVar": {
+                "const": [],
+                "convert": null
+            }
         }
     },
     {
@@ -14,10 +16,12 @@
         "result": "=",
         "comment": "Чтения файла: с категориями html",
         "action": "fileRead",
-        "path": {
-            "const": "D:/configMedia/media/joom/html/categories.html",
-            "convert": {
-                "type": "string"
+        "params": {
+            "path": {
+                "const": "D:/configMedia/media/joom/html/categories.html",
+                "convert": {
+                    "type": "string"
+                }
             }
         }
     },
@@ -26,7 +30,7 @@
         "action": "convertInDom",
         "result": "=",
         "comment": "Создание dom element из строки файла категории",
-        "convertInDom": {
+        "params": {
             "html": {
                 "store": "fileHtmlCategories",
                 "convert": null
@@ -38,7 +42,7 @@
         "action": "findElementHtmlAll",
         "result": "=",
         "comment": "Поиск всех категории из dom element-ов",
-        "findElementHtmlAll": {
+        "params": {
             "html": {
                 "store": "htmlDomCategories",
                 "convert": null
@@ -54,7 +58,7 @@
         "comment": "Прогнать в цикле файлы указанные в for.array",
         "action": "for",
         "result": "=",
-        "for": {
+        "params": {
             "item": "domElementCategories",
             "array": {
                 "store": "categoriesDomList",
@@ -66,9 +70,11 @@
                     "result": "=",
                     "comment": "Создать пустой объект в который будет записывать результат сохранения конвертации",
                     "action": "initVar",
-                    "initVar": {
-                        "const": {},
-                        "convert": null
+                    "params": {
+                        "initVar": {
+                            "const": {},
+                            "convert": null
+                        }
                     }
                 },
                 {
@@ -79,7 +85,7 @@
                     "result": "=",
                     "comment": "Получить имя категории",
                     "action": "getTextContent",
-                    "getTextContent": {
+                    "params": {
                         "html": {
                             "store": "domElementCategories",
                             "convert": null
@@ -98,7 +104,7 @@
                     "result": "=",
                     "comment": "Получить путь к файлу из html",
                     "action": "getAtrHtml",
-                    "getAtrHtml": {
+                    "params": {
                         "html": {
                             "store": "domElementCategories",
                             "convert": null
@@ -118,7 +124,7 @@
                     "comment": "Получить имя файла",
                     "action": "convertReplaceAll",
                     "result": "=",
-                    "convertReplaceAll": {
+                    "params": {
                         "string": {
                             "store": [
                                 "categoriesObject",
@@ -164,9 +170,11 @@
                     "action": "initVar",
                     "comment": "Сохранения объекта в массив результата",
                     "result": "push",
-                    "initVar": {
-                        "store": "categoriesObject",
-                        "convert": "object"
+                    "params": {
+                        "initVar": {
+                            "store": "categoriesObject",
+                            "convert": "object"
+                        }
                     }
                 }
             ]
@@ -176,7 +184,7 @@
         "name": "saveJsonFile",
         "comment": "Сохранить json в файл",
         "action": "fileWrite",
-        "fileWrite": {
+        "params": {
             "path": {
                 "const": "D:/configMedia/media/joom/json/categories.json",
                 "convert": {
